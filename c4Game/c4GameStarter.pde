@@ -14,21 +14,23 @@ void settings() {
 
 void setup() {  
   cf = new ConnectFour(ROWS, COLS);  
-  cf.updateCell(0, 0, 1);
+  cf.updateCell(0, 0, 0);
 }
 // The column is based on the mouse's x-coordinate
 void mousePressed() {
-  //int whichCol = int(mouseX / CELL_WIDTH);
-  //cf.makeMove(whichCol);
+  int whichCol = int(mouseX / CELL_WIDTH);
+  cf.makeMove(whichCol);
 }
 
 void keyPressed() {
-  //if (key == 'R') {
-  //  cf.initializeGame();
-  //}
+  if (key == 'r' || key == 'R') {
+    cf.initializeGame();
+  }
 }
 
 // This method needs to exist, even when there is no
 // code in it. Otherwise, keyPressed and mousePressed won't work.
 void draw() {
+  int whichCol = int(mouseX / CELL_WIDTH);
+  cf.showPlayerMarker(whichCol);
 }

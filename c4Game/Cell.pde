@@ -6,10 +6,28 @@ class Cell {
   color BACK_COLOR = color(100);
 
   int player;
+  
+  boolean isHighlighted = false;
+  int playerMarker = 0;
 
   // Constructs an initially empty cell
   Cell() {
     this.player = 0;
+  }
+
+  // Sets the cell to the win highlighted
+  void setIsHighlighted(boolean highlighted) {
+    isHighlighted = highlighted;
+  }
+  
+  // Sets the player turn indication
+  void setPlayerMarker(int player) {
+     playerMarker = player; 
+  }
+  
+  // Returns the player turn indication
+  int getPlayerMarker() {
+     return playerMarker; 
   }
 
   // Sets the player for a particular cell
@@ -30,6 +48,21 @@ class Cell {
     // yellow square
     fill(200, 200, 0);
     square(x, y, CELL_WIDTH);
+    
+    // Highlighted
+    if (isHighlighted) {
+      fill(200, 100, 40);
+      square(x, y, CELL_WIDTH);
+    }
+    
+    // Player Marker
+    if (playerMarker == 1) {
+      fill(200, 0, 0);
+      circle(x + CELL_WIDTH/2, y + CELL_WIDTH/2, CELL_WIDTH * 1);
+    } else if (playerMarker == 2) {
+      fill(0, 0, 0);
+      circle(x + CELL_WIDTH/2, y + CELL_WIDTH/2, CELL_WIDTH * 1);
+    }
     
     // circle based on which player is in the cell
     if (player == 0) {
